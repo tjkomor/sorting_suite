@@ -20,28 +20,23 @@ module SortingSuite
 
     def self.merge(array)
       merged_array = []
-
-      array.size.times do |times|
-        array.size.times do |index|
-          array.flatten!
-          if array[1]
-            lowest_value = compare(array[0], array[1])
-            array.delete(lowest_value)
-            merged_array << lowest_value
-          elsif times == 0
-            merged_array << array[0]
-          else
-            break
+        array.size.times do |times|
+          array.size.times do |index|
+            array.flatten!
+            if array[1]
+              lowest_value = compare(array[0], array[1])
+              array.delete(lowest_value)
+              merged_array << lowest_value
+            elsif times == 0
+              merged_array << array[0]
+            else
+              break
+            end
           end
-          # require "pry"; binding.pry
-          # pull out the lower value with compare
-          # delete the lower value from the initial array
-          # add lower value to the beginning of the initial array
+          merged_array
         end
         merged_array
       end
-      merged_array
-    end
 
     def self.sort(array)
       split_arrays = split(array)
@@ -53,10 +48,9 @@ module SortingSuite
             new_splits << split(array)[1]
           else
             new_splits << array
-          end  # split(array) ? array.count > 1 : array
+          end
         end
         split_arrays = new_splits
-         # split_arrays = split(split_arrays)
       end
       merge(split_arrays)
     end

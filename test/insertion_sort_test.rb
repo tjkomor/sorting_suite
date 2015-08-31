@@ -1,7 +1,7 @@
-gem 'minitest', '~> 5.2'         # => true
-require 'minitest/autorun'       # => true
-require 'minitest/pride'         # => true
-require './lib/insertion_sort'  # ~> LoadError: cannot load such file -- ../lib/insertion_sort
+gem 'minitest', '~> 5.2'        # => true
+require 'minitest/autorun'      # => true
+require 'minitest/pride'        # => true
+require './lib/insertion_sort'  # ~> LoadError: cannot load such file -- ./lib/insertion_sort
 
 
 class InsertionSortTest < Minitest::Test
@@ -28,7 +28,7 @@ class InsertionSortTest < Minitest::Test
 end
 
 # ~> LoadError
-# ~> cannot load such file -- ../lib/insertion_sort
+# ~> cannot load such file -- ./lib/insertion_sort
 # ~>
 # ~> /Users/tylerkomoroske/.rubies/ruby-2.2.2/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
 # ~> /Users/tylerkomoroske/.rubies/ruby-2.2.2/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
