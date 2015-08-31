@@ -30,6 +30,7 @@ class MergeSortTest < Minitest::Test
 
   def test_merge_sort_works
     merge = SortingSuite::MergeSort
+    assert_equal [0, 2, 6, 9, 10, 11, 13, 14, 22, 500], merge.sort([14, 2, 6, 9, 10, 0, 22, 11, 500, 13])
     assert_equal [1,2,3,4,5], merge.sort([1,3,5,2,4])
     assert_equal [0,1,2,3,4], merge.sort([2,3,4,1,7])
   end

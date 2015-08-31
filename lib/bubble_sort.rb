@@ -1,36 +1,36 @@
-module SortingSuite    # => true
+module SortingSuite
   class BubbleSort
 
     attr_reader :index, :iterate, :array  # => nil
 
     def initialize(array)
-      @array = array             # => [1, 2, 4, 1, 2, 3, 6, 7, 4, 23, 1]
-      @iterate = array.size - 1  # => 10
+      @array = array             # => ["a", "c", "b"]
+      @iterate = array.size - 1  # => 2
       @index = 0                 # => 0
     end                          # => :initialize
 
     def sort
       loop do
-        swapped = 0                                                                # => 0, 0, 0, 0, 0, 0, 0, 0, 0
-          @iterate.times do |index|                                                # => 10, 10, 10, 10, 10, 10, 10, 10, 10
-            if @array[index] > @array[index + 1]                                   # => false, false, true, true, true, false, false, true, false, true, false, true, false, false, false, false, true, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
-              @array[index], @array[index + 1] = @array[index + 1], @array[index]  # => [1, 4], [2, 4], [3, 4], [4, 7], [1, 23], [1, 2], [4, 6], [1, 7], [1, 6], [1, 4], [1, 4], [1, 3], [1, 2], [1, 2]
-                swapped = 1                                                        # => 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        swapped = 0                                                                # => 0, 0
+          @iterate.times do |index|                                                # => 2, 2
+            if @array[index] > @array[index + 1]                                   # => false, true, false, false
+              @array[index], @array[index + 1] = @array[index + 1], @array[index]  # => ["b", "c"]
+                swapped = 1                                                        # => 1
               end # if                                                                  # => true, true, true, true, nil, true, true, nil, true, true, nil, nil, nil, nil, nil, nil
             end  #times.do                                                                  # => 4, 4, 4, 4
 
-            if swapped == 0  # => false, false, false, false, false, false, false, false, true
+            if swapped == 0  # => false, true
           break
         end #loop.do
 
       end #if swapped
-      p @array  # => [1, 1, 1, 2, 2, 3, 4, 4, 6, 7, 23]
+      p @array  # => ["a", "b", "c"]
 
     end  #sort                         # => :sort
-  end
+  end  # => :sort
 end  #class                         # => :sort
 
-# bubble = BubbleSort.new([1,2,4,1,2,3,6,7,4,23,1])  # => #<BubbleSort:0x007fc2549b9588 @array=[1, 2, 4, 1, 2, 3, 6, 7, 4, 23, 1], @iterate=10, @index=0>
-# bubble.sort                                        # => [1, 1, 1, 2, 2, 3, 4, 4, 6, 7, 23]
+bubble = SortingSuite::BubbleSort.new(["a", "c", "b"])  # => #<SortingSuite::BubbleSort:0x007f9a1b9fc240 @array=["a", "c", "b"], @iterate=2, @index=0>
+bubble.sort                                             # => ["a", "b", "c"]
 
-# >> [1, 1, 1, 2, 2, 3, 4, 4, 6, 7, 23]
+# >> ["a", "b", "c"]

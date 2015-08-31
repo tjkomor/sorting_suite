@@ -12,12 +12,17 @@ class InsertionSortTest < Minitest::Test
 
   def test_it_can_accept_array
     insert = SortingSuite::InsertionSort.new([3,2,1])
-    assert_equal [3,2,1], insert.array 
+    assert_equal [3,2,1], insert.array
   end
 
-  def test_insertion_sort_works
+  def test_insertion_sort_works_on_numbers
     insert = SortingSuite::InsertionSort.new([4,5,1,3])
     assert_equal [1,3,4,5], insert.sort
+  end
+
+  def test_insertion_sort_works_on_string
+    insert = SortingSuite::InsertionSort.new(["b", "c", "a"])
+    assert_equal ["a", "b", "c"], insert.sort
   end
 
 end
