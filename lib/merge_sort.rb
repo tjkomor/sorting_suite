@@ -1,30 +1,93 @@
-class MergeSort
+module SortingSuite
+  class MergeSort
 
-  def self.mergesort(list)
-    return list if list.size <= 1  # => false, false, true, true, false, true, true
+    def self.split(array)
+      left_array = []
+      right_array = []
+      mid = array.size / 2
+      left_array << array[0..mid - 1]
+      right_array << array[mid..-1]
+      return left_array.flatten, right_array.flatten
+    end
 
-    mid = list.size / 2                                 # => 2, 1, 1
-    left = list[0, mid]                                 # => [5, 4], [5], [3]
-    right = list[mid, list.size]                        # => [3, 2], [4], [2]
-    self.do_merge( mergesort(left), mergesort(right) )  # => [4], [2], [2]
-  end                                                   # => :mergesort
+    def self.compare(number_1, number_2)
+        if (number_1 <=> number_2) == -1
+          number_1
+        else
+          number_2
+        end
+    end
 
-  def self.do_merge(left, right)
-    p left                        # => [5], [3], [4]
-    p right                       # => [4], [2], [2]
-  end                             # => :do_merge
+    def self.merge(array)
+      merged_array = []
 
-end  # => :do_merge
+      array.size.times do |times|
+        array.size.times do |index|
+          array.flatten!
+          if array[1]
+            lowest_value = compare(array[0], array[1])
+            array.delete(lowest_value)
+            merged_array << lowest_value
+          elsif times == 0
+            merged_array << array[0]
+          else
+            break
+          end
+          # require "pry"; binding.pry
+          # pull out the lower value with compare
+          # delete the lower value from the initial array
+          # add lower value to the beginning of the initial array
+        end
+        merged_array
+      end
+      merged_array
+    end
 
-MergeSort.mergesort([5,4,3,2])  # => [2]
-#merge = MergeSort.new([4,3,2,1])  # => #<MergeSort:0x007fd47c140250 @array=[4, 3, 2, 1], @first_array=[], @second_array=[], @third_array=[]>
-#merge.first_array                 # => [4, 3]
-#merge.second_array                # => [2, 1]
-#p merge                           # => #<MergeSort:0x007fd47c140250 @array=[4, 3, 2, 1], @first_array=[4, 3], @second_array=[2, 1], @third_array=[]>
+    def self.sort(array)
+      split_arrays = split(array)
+      until split_arrays.size == array.count
+        new_splits = []
+        split_arrays.map do |array|
+          if array.count > 1
+            new_splits << split(array)[0]
+            new_splits << split(array)[1]
+          else
+            new_splits << array
+          end  # split(array) ? array.count > 1 : array
+        end
+        split_arrays = new_splits
+         # split_arrays = split(split_arrays)
+      end
+      merge(split_arrays)
+    end
 
-# >> [5]
-# >> [4]
-# >> [3]
-# >> [2]
-# >> [4]
-# >> [2]
+
+  end
+end
+
+# def self.mergesort(list)
+#       return list if list.size <= 1
+#       new_array = []
+#       mid = list.size / 2
+#       left = list[0, mid]
+#       right = list[mid, list.size]
+#       self.do_merge( mergesort(left), mergesort(right) )
+#     end
+# # [2, 4, 4], [8, 8, 8]
+# # [2], [4], [4], 8, 8, 8]
+#     def self.do_merge(left, right)
+#       p left
+#       p right
+#     end
+#
+#     def self.sort(left, right)
+#       new_array = []
+#       # compare first element in left side to second element in left side,
+#       # shovel lower number into new array
+#       array[0] <=> array[1]
+#       array[0][0]
+#
+#     end
+
+
+# MergeSort.mergesort([5,9,4,3,2,6,8])  # => [8]
