@@ -1,7 +1,7 @@
-gem 'minitest', '~> 5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/merge_sort'
+gem 'minitest', '~> 5.2'    # => true
+require 'minitest/autorun'  # => true
+require 'minitest/pride'    # => true
+require './lib/merge_sort'  # ~> LoadError: cannot load such file -- ./lib/merge_sort
 
 class MergeSortTest < Minitest::Test
 
@@ -37,3 +37,10 @@ class MergeSortTest < Minitest::Test
   end
 
 end
+
+# ~> LoadError
+# ~> cannot load such file -- ./lib/merge_sort
+# ~>
+# ~> /Users/tylerkomoroske/.rubies/ruby-2.2.2/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+# ~> /Users/tylerkomoroske/.rubies/ruby-2.2.2/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+# ~> /Users/tylerkomoroske/code/projects/sorting_suite/test/merge_sort_test.rb:4:in `<main>'
